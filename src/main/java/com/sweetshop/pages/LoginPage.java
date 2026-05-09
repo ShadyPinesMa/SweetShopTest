@@ -9,6 +9,7 @@ public class LoginPage extends BasePage{
     private By loginButton = By.id("btn_login");
     private By emailErrorMessage = By.xpath("//div[contains(@class, 'invalid-email)]");
     private By passwordErrorMessage = By.xpath("//div[contains(@class, 'invalid-password)]");
+    private By homePageLink = By.xpath("//a[contains(@class, 'navbar-brand)]");
 
     public void setEmail(String email) {
         set(emailField, email);
@@ -35,5 +36,10 @@ public class LoginPage extends BasePage{
 
     public String getPasswordErrorMessage() {
         return find(passwordErrorMessage).getText();
+    }
+
+    public HomePage goToHomePage() {
+        click(homePageLink);
+        return new HomePage();
     }
 }

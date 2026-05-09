@@ -5,20 +5,71 @@ import org.openqa.selenium.By;
 public class ProductsPage extends BasePage{
 
     //chocolate cups xpath "//*[@data-name='Chocolate Cups']"
-    //sherbert straws xpath "//*[@data-name='Sherbert Straws']"
     //sherbert discs xpath "//*[@data-name='Sherbert Discs']"
     //Bon bons xpath "//*[@data-name='Strawberry Bon Bons']"
     //jellies xpath "//*[@data-name='Jellies']"
     //fruit salads xpath "//*[@data-name='Fruit Salads']"
-    //bubble gums xpath "//*[@data-name='Bubbles Gums']"
+
     //wham bars "//*[@data-name='Wham Bar']"
-    //candy whistles "//*[@data-name='Sweet Whistle']"
-    //sherbert fountains "//*[@data-name='Sherbert Fountain']"
-    //Swansea mixture "//*[@data-name='Swansea Mixture']"
     //chocolate beans "//*[@data-name='Chocolate Beans']"
     //nerds "//*[@data-name='Nerds']"
-    //drumsticks "//*[@data-name='Raspberry Drumstrick']"
-    //bubbly "//*[@data-name='Bubbly']"
-    //dolly mixture "//*[@data-name='Dolly Mixture']"
 
+    //go to basket link : //a[@href='/basket']
+    private By chocolateCups = By.xpath("//*[@data-name='Chocolate Cups']");
+    private By sherbertDiscs = By.xpath("//*[@data-name='Sherbert Discs']");
+    private By bonbons = By.xpath("//*[@data-name='Strawberry Bon Bons']");
+    private By jellies = By.xpath("//*[@data-name='Jellies']");
+    private By fruitSalads = By.xpath("//*[@data-name='Fruit Salads']");
+    private By whamBars = By.xpath("//*[@data-name='Wham Bar']");
+    private By chocolateBeans = By.xpath("//*[@data-name='Chocolate Beans']");
+    private By nerds = By.xpath("//*[@data-name='Nerds']");
+    private By homePageLink = By.xpath("//a[contains(@class, 'navbar-brand)]");
+    private By basketLink = By.xpath("//a[@href='/basket']");
+    private By productsHeader = By.xpath("//h1[text()='Browse sweets']");
+
+    public void addChocolateCupsToBasket() {
+        click(chocolateCups);
+    }
+
+    public void addSherbertDiscsToBasket() {
+        click(sherbertDiscs);
+    }
+
+    public void addBonBonsToBasket() {
+        click(bonbons);
+    }
+
+    public void addJelliesToBasket() {
+        click(jellies);
+    }
+
+    public void addFruitSaladsToBasket() {
+        click(fruitSalads);
+    }
+
+    public void addWhamBarsToBasket() {
+        click(whamBars);
+    }
+
+    public void addChocolateBeansToBasket() {
+        click(chocolateBeans);
+    }
+
+    public void addNerdsToBasket() {
+        click(nerds);
+    }
+
+    public HomePage goToHomePage() {
+        click(homePageLink);
+        return new HomePage();
+    }
+
+    public BasketPage goToBasketPage() {
+        click(basketLink);
+        return new BasketPage();
+    }
+
+    public boolean isProductsHeaderDisplayed() {
+        return find(productsHeader).isDisplayed();
+    }
 }

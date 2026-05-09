@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class HomePage extends BasePage{
     //login location : //a[@href='/login']
     //browse sweets button : //a[contains(@class, 'btn-lg sweets')]
-    //
+    //go to basket link : //a[@href='/basket']
     private By loginLink = By.xpath("//a[@href='/login']");
     private By browseSweetsButton = By.xpath("//a[contains(@class, 'btn-lg sweets')]");
 
@@ -19,5 +19,7 @@ public class HomePage extends BasePage{
         click(browseSweetsButton);
         return new ProductsPage();
     }
+
+
 
 }
