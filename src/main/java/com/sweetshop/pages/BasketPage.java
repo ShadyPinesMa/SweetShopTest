@@ -36,58 +36,42 @@ public class BasketPage extends BasePage{
     private By radioBtnFreeShipping = By.xpath("//label[radio()='exampleRadios1']");
     private By radioBtnStandardShipping = By.xpath("//label[radio()='exampleRadios2']");
     private By emptyBasketLink = By.xpath("//a[@href='#']");
+    private By basketHeader = By.xpath("//h1[normalize-space()='Your Basket']");
     private By homePageLink = By.xpath("//a[contains(@class, 'navbar-brand)]");
 
-    public void setFirstName(String firstName) {
-        set(firstNameField, firstName);
-    }
+    public void setFirstName(String firstName) {set(firstNameField, firstName);}
 
-    public void setLastName(String lastName) {
-        set(lastNameField, lastName);
-    }
+    public void setLastName(String lastName) {set(lastNameField, lastName);}
 
-    public void setEmail(String email) {
-        set(emailField, email);
-    }
+    public void setEmail(String email) {set(emailField, email);}
 
-    public void setAddress1(String addressPt1) {
-        set(address1Field, addressPt1);
-    }
+    public void setAddress1(String addressPt1) {set(address1Field, addressPt1);}
 
-    public void setAddress2(String addressPt2) {
-        set(address2Field, addressPt2);
-    }
+    public void setAddress2(String addressPt2) {set(address2Field, addressPt2);}
 
-    public void setCountry(String country) {
-        set(countryField, country);
-    }
+    public void setCountry(String country) {set(countryField, country);}
 
-    public void setCity(String city) {
-        set(cityField, city);
-    }
+    public void setCity(String city) {set(cityField, city);}
 
-    public void setZip(int zip) {
-        set(zipField, String.valueOf(zip));
-    }
+    public void setZip(int zip) {set(zipField, String.valueOf(zip));}
 
-    public void setCardName(String cardName) {
-        set(cardNameField, cardName);
-    }
+    public void setCardName(String cardName) {set(cardNameField, cardName);}
 
-    public void setCardNum(int cardNum) {
-        set(cardNumField, String.valueOf(cardNum));
-    }
+    public void setCardNum(int cardNum) {set(cardNumField, String.valueOf(cardNum));}
 
-    public void setExpDate(int expDate) {
-        set(expDateField, String.valueOf(expDate));
-    }
+    public void setExpDate(int expDate) {set(expDateField, String.valueOf(expDate));}
 
-    public void setCvv(int cvv) {
-        set(cvvField, String.valueOf(cvv));
-    }
+    public void setCvv(int cvv) {set(cvvField, String.valueOf(cvv));}
 
-    public HomePage goToHomePage() {
-        click(homePageLink);
-        return new HomePage();
+    public void clickCheckoutButton() {click(checkoutButton);}
+
+    public void clickFreeShipping() {click(radioBtnFreeShipping);}
+
+    public void clickStandardShipping() {click(radioBtnStandardShipping);}
+
+    public void clearBasket() {click(emptyBasketLink);}
+
+    public boolean isBasketHeaderDisplayed() {
+        return find(basketHeader).isDisplayed();
     }
 }

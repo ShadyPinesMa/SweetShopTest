@@ -9,9 +9,10 @@ public class AccountPage extends BasePage{
     private By numberOfOrdersPlaced = By.id("accountOrderCount");
     private By pastTransactions = By.id("transactions");
     private By homePageLink = By.xpath("//a[contains(@class, 'navbar-brand)]");
+    private By accountHeader = By.xpath("//h1[normalize-space()='Your Account']");
 
-    public boolean isNumberOfOrdersPlacedDisplayed() {
-        return find(numberOfOrdersPlaced).isDisplayed();
+    public String NumberOfOrdersPlacedDisplayed() {
+        return find(numberOfOrdersPlaced).getText();
     }
 
     public boolean arePastTransactionsDisplayed() {
@@ -21,5 +22,9 @@ public class AccountPage extends BasePage{
     public HomePage goToHomePage() {
         click(homePageLink);
         return new HomePage();
+    }
+
+    public boolean isAccountHeaderDisplayed() {
+        return find(accountHeader).isDisplayed();
     }
 }

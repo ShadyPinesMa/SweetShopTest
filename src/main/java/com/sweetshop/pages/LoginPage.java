@@ -4,12 +4,13 @@ import org.openqa.selenium.By;
 
 public class LoginPage extends BasePage{
 
-    private By emailField = By.id("exampleInputEmail");
-    private By passwordField = By.id("exampleInputPassword");
+    private By emailField = By.xpath("//input[@id='exampleInputEmail']");
+    private By passwordField = By.xpath("//input[@id='exampleInputPassword']");
     private By loginButton = By.id("btn_login");
-    private By emailErrorMessage = By.xpath("//div[contains(@class, 'invalid-email)]");
-    private By passwordErrorMessage = By.xpath("//div[contains(@class, 'invalid-password)]");
+    private By emailErrorMessage = By.xpath("//div[@class='invalid-feedback invalid-email']");
+    private By passwordErrorMessage = By.xpath("//div[@class='invalid-feedback invalid-password']");
     private By homePageLink = By.xpath("//a[contains(@class, 'navbar-brand)]");
+    private By loginHeader = By.xpath("//h1[normalize-space()='Login']");
 
     public void setEmail(String email) {
         set(emailField, email);
@@ -42,4 +43,10 @@ public class LoginPage extends BasePage{
         click(homePageLink);
         return new HomePage();
     }
+
+    public boolean isLoginHeaderDisplayed() {
+        return find(loginHeader).isDisplayed();
+    }
+
+
 }

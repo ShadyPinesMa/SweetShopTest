@@ -8,7 +8,8 @@ public class HomePage extends BasePage{
     //browse sweets button : //a[contains(@class, 'btn-lg sweets')]
     //go to basket link : //a[@href='/basket']
     private By loginLink = By.xpath("//a[@href='/login']");
-    private By browseSweetsButton = By.xpath("//a[contains(@class, 'btn-lg sweets')]");
+    private By browseSweetsButton = By.xpath("//a[@href='/sweets']");
+    private By homeHeader = By.xpath("//h1[normalize-space()='Welcome to the sweet shop!']");
 
     public LoginPage clickLoginLink() {
         click(loginLink);
@@ -18,6 +19,10 @@ public class HomePage extends BasePage{
     public ProductsPage clickBrowseSweetsButton() {
         click(browseSweetsButton);
         return new ProductsPage();
+    }
+
+    public boolean isHomeHeaderDisplayed() {
+        return find(homeHeader).isDisplayed();
     }
 
 

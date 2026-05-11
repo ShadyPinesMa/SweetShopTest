@@ -16,7 +16,7 @@ public class ProductsPage extends BasePage{
 
     //go to basket link : //a[@href='/basket']
     private By chocolateCups = By.xpath("//*[@data-name='Chocolate Cups']");
-    private By sherbertDiscs = By.xpath("//*[@data-name='Sherbert Discs']");
+    private By sherbertDiscs = By.xpath("//*[@data-name='Sherbet Discs']");
     private By bonbons = By.xpath("//*[@data-name='Strawberry Bon Bons']");
     private By jellies = By.xpath("//*[@data-name='Jellies']");
     private By fruitSalads = By.xpath("//*[@data-name='Fruit Salads']");
@@ -25,7 +25,9 @@ public class ProductsPage extends BasePage{
     private By nerds = By.xpath("//*[@data-name='Nerds']");
     private By homePageLink = By.xpath("//a[contains(@class, 'navbar-brand)]");
     private By basketLink = By.xpath("//a[@href='/basket']");
+    private By numItemsInBasket = By.xpath("//span[contains(@class, 'badge-success')]");
     private By productsHeader = By.xpath("//h1[text()='Browse sweets']");
+
 
     public void addChocolateCupsToBasket() {
         click(chocolateCups);
@@ -39,9 +41,7 @@ public class ProductsPage extends BasePage{
         click(bonbons);
     }
 
-    public void addJelliesToBasket() {
-        click(jellies);
-    }
+    public void addJelliesToBasket() {click(jellies);}
 
     public void addFruitSaladsToBasket() {
         click(fruitSalads);
@@ -72,4 +72,10 @@ public class ProductsPage extends BasePage{
     public boolean isProductsHeaderDisplayed() {
         return find(productsHeader).isDisplayed();
     }
+
+    public String getNumItemsInBasket() {
+        return find(numItemsInBasket).getText();
+    }
+
+
 }
