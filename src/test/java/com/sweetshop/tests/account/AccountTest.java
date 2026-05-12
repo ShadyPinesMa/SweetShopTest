@@ -5,7 +5,7 @@ import com.sweetshop.pages.AccountPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
+
 
 public class AccountTest extends BaseTest {
 
@@ -26,7 +26,19 @@ public class AccountTest extends BaseTest {
                 "twoorders@sweetshop.local",
                 "abc123"
         );
-        Assert.assertEquals(2, 2);
+        int actual = accountPage.numberOfOrdersPlacedDisplayed();
+        int expected = 2;
+        Assert.assertEquals(actual, expected);
 
+    }
+
+    @Test
+    public void testPastTransactionsDisplayed() {
+        homePage.clickLoginLink();
+        AccountPage accountpage = loginPage.logIntoApplication(
+                "oneorder@sweetshop.local",
+                "abc123"
+        );
+        Assert.assertTrue(accountPage.arePastTransactionsDisplayed());
     }
 }

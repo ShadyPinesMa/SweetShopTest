@@ -11,8 +11,8 @@ public class AccountPage extends BasePage{
     private By homePageLink = By.xpath("//a[contains(@class, 'navbar-brand)]");
     private By accountHeader = By.xpath("//h1[normalize-space()='Your Account']");
 
-    public String NumberOfOrdersPlacedDisplayed() {
-        return find(numberOfOrdersPlaced).getText();
+    public int numberOfOrdersPlacedDisplayed() {
+        return Integer.parseInt(find(numberOfOrdersPlaced).getText());
     }
 
     public boolean arePastTransactionsDisplayed() {

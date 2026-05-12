@@ -1,4 +1,66 @@
 package com.sweetshop.tests.basket;
 
-public class BasketTest {
+import com.sweetshop.base.BaseTest;
+import org.testng.Assert;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class BasketTest extends BaseTest {
+
+    @Test
+    public void isBasketHeaderDisplayedTest() {
+        homePage.clickBasketLink();
+        Assert.assertTrue(basketPage.isBasketHeaderDisplayed());
+    }
+
+    @Test
+    public void doesBasketDisplayCorrectItemsTest() {
+        homePage.clickBrowseSweetsButton();
+        productsPage.addJelliesToBasket();
+        productsPage.addChocolateBeansToBasket();
+        productsPage.addNerdsToBasket();
+        productsPage.goToBasketPage();
+        Assert.assertTrue(basketPage.isProductInBasket("Jellies"));
+        Assert.assertTrue(basketPage.isProductInBasket("Chocolate Beans"));
+        Assert.assertTrue(basketPage.isProductInBasket("Nerds"));
+    }
+
+    @Test
+    public void testErrorMessagesCustomerInfo() {
+        homePage.clickBasketLink();
+        basketPage.clickCheckoutButton();
+        String firstNameError = basketPage.getFirstNameError();
+        Assert.assertTrue(firstNameError.contains("Valid first name"));
+        String lastNameError = basketPage.getLastNameError();
+        Assert.assertTrue(lastNameError.contains("Valid last name"));
+        String emailError = basketPage.getEmailError();
+        Assert.assertTrue(emailError.contains("valid email address"));
+        String address1Error = basketPage.getAddressError();
+        Assert.assertTrue(address1Error.contains("enter your shipping address"));
+        String countryError = basketPage.getCountryError();
+        Assert.assertTrue(countryError.contains("valid country"));
+        String cityError = basketPage.getCityError();
+        Assert.assertTrue(cityError.contains("valid state"));
+        String zipError = basketPage.getZipError();
+        Assert.assertTrue(zipError.contains("Zip code required"));
+    }
+
+    @Test
+    public void testErrorMessagesCreditCard() {
+        homePage.clickBasketLink();
+        basketPage.clickCheckoutButton();
+        String cardNameError = basketPage.getCardNameError();
+        Assert.assertTrue(cardNameError.contains("Name on card"));
+        String cardNumError = basketPage.getCardNumError();
+        Assert.assertTrue(cardNumError.contains("Credit card number"));
+        String expError = basketPage.getExpDateError();
+        Assert.assertTrue(expError.contains("Expiration date"));
+        String cvvError = basketPage.getCvvError();
+        Assert.assertTrue(cvvError.contains("Security code"));
+    }
+
+
+
+
+
 }

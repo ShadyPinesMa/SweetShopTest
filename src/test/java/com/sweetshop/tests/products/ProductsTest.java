@@ -38,7 +38,8 @@ public class ProductsTest extends BaseTest {
     @Test
     public void testBasketLink() {
         productsPage.goToBasketPage();
-
+        Assert.assertTrue(basketPage.isBasketHeaderDisplayed(),
+                "\n Basket Header is not Displayed \n");
     }
 
 }

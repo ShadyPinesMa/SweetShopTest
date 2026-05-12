@@ -1,15 +1,8 @@
 package com.sweetshop.tests.login;
 
 import com.sweetshop.base.BaseTest;
-
-import com.sweetshop.pages.AccountPage;
-import com.sweetshop.pages.LoginPage;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 public class LoginTest extends BaseTest {
 
