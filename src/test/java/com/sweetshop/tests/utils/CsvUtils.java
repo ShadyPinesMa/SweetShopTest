@@ -16,9 +16,7 @@ public class CsvUtils {
         }
 
         CSVReader reader = new CSVReader(new InputStreamReader(inputStream));
-
         List<String[]> csvData = reader.readAll();
-
         reader.close();
 
         List<Object[]> data = new ArrayList<>();

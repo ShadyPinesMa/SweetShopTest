@@ -1,6 +1,7 @@
 package com.sweetshop.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 public class ProductsPage extends BasePage {
     private By chocolateCups = By.xpath("//*[@data-name='Chocolate Cups']");
@@ -15,7 +16,6 @@ public class ProductsPage extends BasePage {
     private By basketLink = By.xpath("//a[@href='/basket']");
     private By numItemsInBasket = By.xpath("//span[contains(@class, 'badge-success')]");
     private By productsHeader = By.xpath("//h1[text()='Browse sweets']");
-
 
     public void addChocolateCupsToBasket() {
         click(chocolateCups);
@@ -47,14 +47,18 @@ public class ProductsPage extends BasePage {
         click(nerds);
     }
 
+    public ProductsPage(WebDriver driver) {
+        super(driver);
+    }
+
     public HomePage goToHomePage() {
         click(homePageLink);
-        return new HomePage();
+        return new HomePage(driver);
     }
 
     public BasketPage goToBasketPage() {
         click(basketLink);
-        return new BasketPage();
+        return new BasketPage(driver);
     }
 
     public boolean isProductsHeaderDisplayed() {
@@ -64,8 +68,6 @@ public class ProductsPage extends BasePage {
     public String getNumItemsInBasket() {
         return find(numItemsInBasket).getText();
     }
-
-
 
 
 }

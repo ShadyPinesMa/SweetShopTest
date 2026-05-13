@@ -20,7 +20,6 @@ public class HomeTest extends BaseTest {
                 "\n Login Header is not Displayed \n");
     }
 
-
     @Test
     public void testHomePageHeader() {
         homePage.isHomeHeaderDisplayed();

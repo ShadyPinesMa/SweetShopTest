@@ -1,13 +1,13 @@
 package com.sweetshop.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-
-
 import java.util.List;
 
 public class BasketPage extends BasePage{
+
     private By firstNameField = By.xpath(" //label[normalize-space()='First name']/following-sibling::input");
     private By lastNameField = By.xpath( "//label[normalize-space()='Last name']/following-sibling::input");
     private By emailField = By.id("email");
@@ -41,6 +41,9 @@ public class BasketPage extends BasePage{
     private By expDateError = By.xpath("//div[normalize-space()='Expiration date required']");
     private By cvvError = By.xpath("//div[normalize-space()='Security code required']");
 
+    public BasketPage(WebDriver driver) {
+        super(driver);
+    }
 
     public void setFirstName(String firstName) {set(firstNameField, firstName);}
 
@@ -50,21 +53,28 @@ public class BasketPage extends BasePage{
 
     public void setAddress1(String addressPt1) {set(address1Field, addressPt1);}
 
+    //Address 2 not required, so it got skipped
     public void setAddress2(String addressPt2) {set(address2Field, addressPt2);}
 
-    public void setCountry(String country) {set(countryDropDown, country);}
+    public void setCountry(String country) {
+        Select countrySelect = new Select(find(countryDropDown));
+        countrySelect.selectByVisibleText(country);
+    }
 
-    public void setCity(String city) {set(cityDropDown, city);}
+    public void setCity(String city) {
+        Select citySelect = new Select(find(cityDropDown));
+        citySelect.selectByVisibleText(city);
+    }
 
     public void setZip(int zip) {set(zipField, String.valueOf(zip));}
 
     public void setCardName(String cardName) {set(cardNameField, cardName);}
 
-    public void setCardNum(int cardNum) {set(cardNumField, String.valueOf(cardNum));}
+    public void setCardNum(String cardNum) {set(cardNumField, cardNum);}
 
-    public void setExpDate(int expDate) {set(expDateField, String.valueOf(expDate));}
+    public void setExpDate(String expDate) {set(expDateField, expDate);}
 
-    public void setCvv(int cvv) {set(cvvField, String.valueOf(cvv));}
+    public void setCvv(String cvv) {set(cvvField, cvv);}
 
     public void clickCheckoutButton() {click(checkoutButton);}
 

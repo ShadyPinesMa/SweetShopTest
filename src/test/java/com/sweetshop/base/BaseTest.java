@@ -3,14 +3,12 @@ package com.sweetshop.base;
 import com.sweetshop.pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
 
     protected WebDriver driver;
-    protected BasePage basePage;
     protected HomePage homePage;
     protected ProductsPage productsPage;
     protected LoginPage loginPage;
@@ -19,22 +17,23 @@ public class BaseTest {
 
     private String url = "https://sweetshop.vivrichards.co.uk/";
 
-    @BeforeTest(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void setUp() {
         driver = new EdgeDriver();
         driver.manage().window().maximize();
         driver.get(url);
-        basePage = new BasePage();
-        basePage.setDriver(driver);
-        homePage = new HomePage();
-        productsPage = new ProductsPage();
-        loginPage = new LoginPage();
-        basketPage = new BasketPage();
-        accountPage = new AccountPage();
+        homePage = new HomePage(driver);
+        productsPage = new ProductsPage(driver);
+        loginPage = new LoginPage(driver);
+        basketPage = new BasketPage(driver);
+        accountPage = new AccountPage(driver);
     }
 
-    @AfterTest(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
+
     }
 }

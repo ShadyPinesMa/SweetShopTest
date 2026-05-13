@@ -1,6 +1,7 @@
 package com.sweetshop.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage{
 
@@ -12,6 +13,10 @@ public class LoginPage extends BasePage{
     private By homePageLink = By.xpath("//a[contains(@class, 'navbar-brand)]");
     private By loginHeader = By.xpath("//h1[normalize-space()='Login']");
 
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
+
     public void setEmail(String email) {
         set(emailField, email);
     }
@@ -22,7 +27,7 @@ public class LoginPage extends BasePage{
 
     public AccountPage clickLoginButton() {
         click(loginButton);
-        return new AccountPage();
+        return new AccountPage(driver);
     }
 
     public AccountPage logIntoApplication(String email, String password) {
@@ -41,7 +46,7 @@ public class LoginPage extends BasePage{
 
     public HomePage goToHomePage() {
         click(homePageLink);
-        return new HomePage();
+        return new HomePage(driver);
     }
 
     public boolean isLoginHeaderDisplayed() {

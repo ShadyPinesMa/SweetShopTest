@@ -38,6 +38,11 @@ public class BasketTest extends BaseTest {
     @Test
     public void testErrorMessagesCustomerInfo() {
         homePage.clickBasketLink();
+        addProductsToBasket();
+        basketPage.setCardName("Alphonse Elric");
+        basketPage.setCardNum("8900888800009999");
+        basketPage.setExpDate("01/27");
+        basketPage.setCvv("398");
         basketPage.clickCheckoutButton();
         String firstNameError = basketPage.getFirstNameError();
         Assert.assertTrue(firstNameError.contains("Valid first name"));
@@ -58,6 +63,14 @@ public class BasketTest extends BaseTest {
     @Test
     public void testErrorMessagesCreditCard() {
         homePage.clickBasketLink();
+        addProductsToBasket();
+        basketPage.setFirstName("Suzie");
+        basketPage.setLastName("Smith");
+        basketPage.setEmail("ssmith@mail.com");
+        basketPage.setAddress1("5678 Cherry St");
+        basketPage.setCountry("United Kingdom");
+        basketPage.setCity("Bristol");
+        basketPage.setZip(55555);
         basketPage.clickCheckoutButton();
         String cardNameError = basketPage.getCardNameError();
         Assert.assertTrue(cardNameError.contains("Name on card"));
@@ -74,14 +87,11 @@ public class BasketTest extends BaseTest {
         return CsvUtils.getCsvData("checkoutData.csv");
     }
 
-
     @Test(dataProvider = "checkoutData")
     public void verifyCheckoutProcess(CheckoutData checkoutData) {
         addProductsToBasket();
         basketPage.completeCheckout(checkoutData);
         Assert.assertTrue(basketPage.checkoutFormIsCleared());
     }
-
-
 
 }
