@@ -1,46 +1,71 @@
 package com.sweetshop.tests.utils;
 
 import com.opencsv.CSVReader;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import com.opencsv.*;
+import com.sweetshop.pages.CheckoutData;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 
 public class CsvUtils {
 
-    public static Object[][] getCsvData(String filePath) throws Exception {
-        CSVReader reader = new CSVReader(new FileReader(filePath));
+    public static Object[][] getCsvData(String fileName) throws Exception {
+        System.out.println("Reading CSV file...");
+
+
+        InputStream inputStream = CsvUtils.class.getClassLoader().getResourceAsStream(fileName);
+
+        if (inputStream == null) {
+            throw new RuntimeException(
+                    "CSV file not found" + fileName);
+        }
+
+        CSVReader reader = new CSVReader(new InputStreamReader(inputStream));
 
         List<String[]> csvData = reader.readAll();
+        System.out.println("Rows found: " + csvData.size());
 
         reader.close();
 
-        List<Object[]> records = new ArrayList<>();
+        List<Object[]> data = new ArrayList<>();
 
-        // Skip header row
         for (int i = 1; i < csvData.size(); i++) {
 
             String[] row = csvData.get(i);
 
-            records.add(new Object[] {
-                    row[0],
-                    row[1],
-                    row[2],
-                    row[3],
-                    row[4],
-                    row[5],
-                    row[6],
-                    row[7],
-                    row[8],
-                    row[9],
-                    row[10]
-            });
-        }
+            System.out.println(
+                    "Processing row length: " + row.length);
 
-        return records.toArray(new Object[0][]);
+            if (row.length < 12) {
+                System.out.println("Skipping invalid row");
+                continue;
+            }
+            System.out.println("Row Length: " + row.length);
+
+            for (String value : row) {
+                System.out.println(value);
+            }
+
+            CheckoutData checkoutData = new CheckoutData(
+                            row[0].trim(),//first name
+                            row[1].trim(),//last name
+                            row[2].trim(),//email
+                            row[3].trim(),//address 1
+                            row[4].trim(),//address 2
+                            row[5].trim(),//country
+                            row[6].trim(),//city
+                            row[7].trim(),//zip
+                            row[8].trim(),//card name
+                            row[9].trim(),//card num
+                            row[10].trim(),//exp date
+                            row[11].trim()//cvv
+            );
+
+            data.add(new Object[]{ checkoutData });
+        }
+        System.out.println(
+                "Total datasets loaded: " + data.size());
+        return data.toArray(new Object[0][]);
+
     }
 }

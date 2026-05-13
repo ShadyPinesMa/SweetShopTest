@@ -1,11 +1,22 @@
 package com.sweetshop.tests.basket;
 
 import com.sweetshop.base.BaseTest;
+import com.sweetshop.pages.CheckoutData;
+import com.sweetshop.tests.utils.CsvUtils;
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class BasketTest extends BaseTest {
+
+    private void addProductsToBasket() {
+        homePage.clickBrowseSweetsButton();
+        productsPage.addChocolateCupsToBasket();
+        productsPage.addBonBonsToBasket();
+        productsPage.addWhamBarsToBasket();
+        productsPage.goToBasketPage();
+    }
 
     @Test
     public void isBasketHeaderDisplayedTest() {
@@ -35,7 +46,7 @@ public class BasketTest extends BaseTest {
         Assert.assertTrue(lastNameError.contains("Valid last name"));
         String emailError = basketPage.getEmailError();
         Assert.assertTrue(emailError.contains("valid email address"));
-        String address1Error = basketPage.getAddressError();
+        String address1Error = basketPage.getAddress1Error();
         Assert.assertTrue(address1Error.contains("enter your shipping address"));
         String countryError = basketPage.getCountryError();
         Assert.assertTrue(countryError.contains("valid country"));
@@ -59,7 +70,18 @@ public class BasketTest extends BaseTest {
         Assert.assertTrue(cvvError.contains("Security code"));
     }
 
+    @DataProvider(name = "checkoutData")
+    public Object[][] getData() throws Exception {
+        return CsvUtils.getCsvData("checkoutData.csv");
+    }
 
+
+    @Test(dataProvider = "checkoutData")
+    public void verifyCheckoutProcess(CheckoutData checkoutData) {
+        addProductsToBasket();
+        basketPage.completeCheckout(checkoutData);
+        Assert.assertTrue(basketPage.checkoutFormIsCleared());
+    }
 
 
 
