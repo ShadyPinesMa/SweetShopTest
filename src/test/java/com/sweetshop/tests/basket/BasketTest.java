@@ -4,7 +4,6 @@ import com.sweetshop.base.BaseTest;
 import com.sweetshop.pages.CheckoutData;
 import com.sweetshop.tests.utils.CsvUtils;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

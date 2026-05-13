@@ -2,19 +2,7 @@ package com.sweetshop.pages;
 
 import org.openqa.selenium.By;
 
-public class ProductsPage extends BasePage{
-
-    //chocolate cups xpath "//*[@data-name='Chocolate Cups']"
-    //sherbert discs xpath "//*[@data-name='Sherbert Discs']"
-    //Bon bons xpath "//*[@data-name='Strawberry Bon Bons']"
-    //jellies xpath "//*[@data-name='Jellies']"
-    //fruit salads xpath "//*[@data-name='Fruit Salads']"
-
-    //wham bars "//*[@data-name='Wham Bar']"
-    //chocolate beans "//*[@data-name='Chocolate Beans']"
-    //nerds "//*[@data-name='Nerds']"
-
-    //go to basket link : //a[@href='/basket']
+public class ProductsPage extends BasePage {
     private By chocolateCups = By.xpath("//*[@data-name='Chocolate Cups']");
     private By sherbertDiscs = By.xpath("//*[@data-name='Sherbet Discs']");
     private By bonbons = By.xpath("//*[@data-name='Strawberry Bon Bons']");

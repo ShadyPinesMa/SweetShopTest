@@ -33,8 +33,6 @@ public class BaseTest {
         accountPage = new AccountPage();
     }
 
-
-
     @AfterTest(alwaysRun = true)
     public void tearDown() {
         driver.quit();

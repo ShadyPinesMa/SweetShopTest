@@ -10,42 +10,28 @@ import java.util.List;
 public class CsvUtils {
 
     public static Object[][] getCsvData(String fileName) throws Exception {
-        System.out.println("Reading CSV file...");
-
-
         InputStream inputStream = CsvUtils.class.getClassLoader().getResourceAsStream(fileName);
-
         if (inputStream == null) {
-            throw new RuntimeException(
-                    "CSV file not found" + fileName);
+            throw new RuntimeException("CSV file not found" + fileName);
         }
 
         CSVReader reader = new CSVReader(new InputStreamReader(inputStream));
 
         List<String[]> csvData = reader.readAll();
-        System.out.println("Rows found: " + csvData.size());
 
         reader.close();
 
         List<Object[]> data = new ArrayList<>();
 
         for (int i = 1; i < csvData.size(); i++) {
-
             String[] row = csvData.get(i);
-
-            System.out.println(
-                    "Processing row length: " + row.length);
-
             if (row.length < 12) {
                 System.out.println("Skipping invalid row");
                 continue;
             }
-            System.out.println("Row Length: " + row.length);
-
             for (String value : row) {
                 System.out.println(value);
             }
-
             CheckoutData checkoutData = new CheckoutData(
                             row[0].trim(),//first name
                             row[1].trim(),//last name
@@ -60,12 +46,10 @@ public class CsvUtils {
                             row[10].trim(),//exp date
                             row[11].trim()//cvv
             );
-
             data.add(new Object[]{ checkoutData });
         }
         System.out.println(
                 "Total datasets loaded: " + data.size());
         return data.toArray(new Object[0][]);
-
     }
 }

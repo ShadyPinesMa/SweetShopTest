@@ -1,12 +1,9 @@
 package com.sweetshop.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
-public class HomePage extends BasePage{
-    //login location : //a[@href='/login']
-    //browse sweets button : //a[contains(@class, 'btn-lg sweets')]
-    //go to basket link : //a[@href='/basket']
+
+public class HomePage extends BasePage {
     private By loginLink = By.xpath("//a[@href='/login']");
     private By browseSweetsButton = By.xpath("//a[@href='/sweets']");
     private By homeHeader = By.xpath("//h1[normalize-space()='Welcome to the sweet shop!']");

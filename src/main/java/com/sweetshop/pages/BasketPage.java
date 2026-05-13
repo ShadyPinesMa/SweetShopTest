@@ -21,8 +21,8 @@ public class BasketPage extends BasePage{
     private By expDateField = By.id("cc-expiration");
     private By cvvField = By.id("cc-cvv");
     private By checkoutButton = By.xpath("//button[contains(text(), 'checkout')]");
-    private By radioBtnFreeShipping = By.xpath("//label[radio()='exampleRadios1']");
-    private By radioBtnStandardShipping = By.xpath("//label[radio()='exampleRadios2']");
+    private By radioBtnFreeShipping = By.xpath("//label[@for='exampleRadios1']");
+    private By radioBtnStandardShipping = By.xpath("//label[@for='exampleRadios1']");
     private By emptyBasketLink = By.xpath("//a[@href='#']");
     private By basketHeader = By.xpath("//h1[normalize-space()='Your Basket']");
     private By yourBasket = By.xpath("//ul[@id='basketItems']");
@@ -190,6 +190,7 @@ public class BasketPage extends BasePage{
         find(cardNumField).sendKeys(data.getCcNumber());
         find(expDateField).sendKeys(data.getExpDate());
         find(cvvField).sendKeys(data.getCvv());
+        clickStandardShipping();
         clickCheckoutButton();
     }
 

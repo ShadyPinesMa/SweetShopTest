@@ -29,13 +29,24 @@ public class AccountTest extends BaseTest {
         int actual = accountPage.numberOfOrdersPlacedDisplayed();
         int expected = 2;
         Assert.assertEquals(actual, expected);
+    }
 
+    @Test
+    public void testNumberOfOrdersDisplayedNegative() {
+        homePage.clickLoginLink();
+        loginPage.logIntoApplication(
+                "fiveorders@sweetshop.local",
+                "defg909"
+        );
+        int actual = accountPage.numberOfOrdersPlacedDisplayed();
+        int expected = 10;
+        Assert.assertEquals(actual, expected);
     }
 
     @Test
     public void testPastTransactionsDisplayed() {
         homePage.clickLoginLink();
-        AccountPage accountpage = loginPage.logIntoApplication(
+        loginPage.logIntoApplication(
                 "oneorder@sweetshop.local",
                 "abc123"
         );

@@ -29,8 +29,8 @@ public class CheckoutData {
             String ccNumber,
             String expDate,
             String cvv
-    ) {
-
+            )
+    {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

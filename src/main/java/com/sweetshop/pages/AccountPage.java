@@ -2,10 +2,7 @@ package com.sweetshop.pages;
 
 import org.openqa.selenium.By;
 
-public class AccountPage extends BasePage{
-    //Orders placed number (id) : "accountOrderCount"
-    //Past transactions (id) : "transactions"
-
+public class AccountPage extends BasePage {
     private By numberOfOrdersPlaced = By.id("accountOrderCount");
     private By pastTransactions = By.id("transactions");
     private By homePageLink = By.xpath("//a[contains(@class, 'navbar-brand)]");
